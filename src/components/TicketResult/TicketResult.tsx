@@ -77,7 +77,6 @@ export default function TicketResult({ ticket }: { ticket: Ticket }) {
             {getIcon(firstTrip.transportType)}
           </div>
 
-          {/* TODO: fix key */}
           <div className={styles["company-logos"]}>
             {companies.map((company, index) => (
               <div key={index} className={styles["logo"]}>
