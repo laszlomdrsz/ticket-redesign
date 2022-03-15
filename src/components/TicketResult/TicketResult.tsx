@@ -45,7 +45,7 @@ export default function TicketResult({ ticket }: { ticket: Ticket }) {
   const companies = ticket.trips.map((trip) => trip.companyName);
 
   const parseTime = (date: string) => {
-    const time = new Date(date).toLocaleTimeString("en-US", {
+    const time = new Date(date).toLocaleTimeString("en-UK", {
       hour: "2-digit",
       minute: "2-digit",
     });
@@ -53,30 +53,60 @@ export default function TicketResult({ ticket }: { ticket: Ticket }) {
   };
 
   const firstTrip = ticket.trips[0];
-  // const lastTrip = ticket.trips[ticket.trips.length - 1];
+  const lastTrip = ticket.trips[ticket.trips.length - 1];
 
-  // sample ways to use the data:
-  // const price = Math.round(ticket.price) + " €";
-  // const departureTime = parseTime(firstTrip.departure.time);
-  // const arrivalTime = parseTime(lastTrip.arrival.time);
+  const price =   "€" + Math.round(ticket.price);
+  const stops = [
+    {
+      time: parseTime(firstTrip.departure.time),
+      city: firstTrip.departure.city,
+      station: firstTrip.departure.station,
+    },
+    {
+      time: parseTime(lastTrip.arrival.time),
+      city: lastTrip.arrival.city,
+      station: lastTrip.arrival.station,
+    }
+  ];
 
   return (
-    <Link to="/ticket">
+    <Link to="/ticket" className={styles["link--no-decoration"]}>
       <div className={styles["ticket"]}>
-        <div>
+        <div className={styles["logo-area"]}>
           {/* we will always only display the first transport type */}
-          {getIcon(firstTrip.transportType)}
+          <div className={styles["logo"]}>
+            {getIcon(firstTrip.transportType)}
+          </div>
 
           {/* we will always display all the companies */}
-          {companies.map((company) => (
-            <div key={company} className={styles["company-logo"]}>
-              {getLogo(company)}
-            </div>
-          ))}
+          {/* TODO: fix key */}
+          <div className={styles["company-logos"]}>
+            {companies.map((company) => (
+              <div key={company} className={styles["logo"]}>
+                {getLogo(company)}
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* its your job to make this pretty :) */}
-        <p>{JSON.stringify(ticket)}</p>
+        <div className={styles["trips-card"]}>
+          <div className={styles["stops"]}>
+            {stops.map((stop, index) => (
+              <div className={styles["stop"]} key={index}>
+                <div className={styles["time"]}>
+                  {stop.time}
+                </div>
+                <div className={styles["location"]}>
+                  <span className={styles["city"]}>{stop.city}</span>
+                  <span className={styles["station"]}>{stop.station}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className={styles["price"]}>
+            {price}
+          </div>
+        </div>
       </div>
     </Link>
   );

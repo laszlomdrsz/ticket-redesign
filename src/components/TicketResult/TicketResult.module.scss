@@ -1,15 +1,91 @@
 @import "./../../assets/scss/variables";
 
+/*
+  Font styles don't match up with Figma, I just used the global ones here
+*/
+
+.link--no-decoration {
+  text-decoration: none;
+}
+
 .ticket {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  background-color: $white;
+  border-radius: 13px;
+  @include card-outside-shadow;
+  border-radius: $card-border-radius;
   margin: 10px;
-  cursor: pointer;
+
+  .logo-area {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 0 10px;
+    padding: 5px 10px;
+
+    .logo {
+      @include centered-flex;
+    }
+
+    .company-logos {
+      display: flex;
+      gap: 13px 10px;
+      flex-wrap: wrap;
+      padding: 10px 0;
+
+      .logo{
+        height: 20px;
+      }
+    }
+  }
+
+  .trips-card {
+    @include card-inside-shadow;
+    border-radius: $card-border-radius;
+    padding: 13px 10px;
+    display: grid;
+    grid-template-columns: 1fr max-content;
+
+    .stops {
+      display: flex;
+      flex-direction: column;
+      gap: 10px 0;
+      .stop {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        color: $default-text;
+        text-align: left;
+
+        /*
+        div {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+        }
+        */
+
+        .time {
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 20px;
+        }
+
+        .location {
+          font-size: 14px;
+          line-height: 18px;
+          .city {
+            font-weight: 600;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+
+    .price {
+      @include centered-flex;
+      padding: 0 10px;
+      color: $kombo-blue;
+      font-size: 28px;
+      font-weight: 700;
+    }
+  }
 }

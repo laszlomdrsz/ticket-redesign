@@ -11,6 +11,11 @@ $grey: #838383;
 
 $shadow-color: rgba(13, 39, 54, 0.2);
 
+/* Figma has a different shadow-color, I use it for the purposes of Task 1 */
+$figma-shadow-color: rgba(19, 41, 104, 0.2);
+
+$card-border-radius: 13px;
+
 @mixin desktop-size {
   @media (min-width: 993px) {
     @content;
@@ -32,4 +37,18 @@ $shadow-color: rgba(13, 39, 54, 0.2);
   justify-content: center;
   align-items: center;
   background-color: $kombo-yellow;
+}
+
+@mixin centered-flex {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+@mixin card-outside-shadow {
+  filter: drop-shadow(0px 2px 5px $figma-shadow-color);
+}
+
+@mixin card-inside-shadow {
+  box-shadow: 0px 10px 30px $figma-shadow-color;
 }
