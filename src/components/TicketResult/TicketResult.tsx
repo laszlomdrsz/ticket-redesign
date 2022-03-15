@@ -73,12 +73,10 @@ export default function TicketResult({ ticket }: { ticket: Ticket }) {
     <Link to="/ticket" className={styles["link--no-decoration"]}>
       <div className={styles["ticket"]}>
         <div className={styles["logo-area"]}>
-          {/* we will always only display the first transport type */}
           <div className={styles["logo"]}>
             {getIcon(firstTrip.transportType)}
           </div>
 
-          {/* we will always display all the companies */}
           {/* TODO: fix key */}
           <div className={styles["company-logos"]}>
             {companies.map((company) => (
