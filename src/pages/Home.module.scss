@@ -1,0 +1,38 @@
+@import "./../assets/scss/variables";
+
+.kombo-search {
+  @include desktop-size {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+
+  > * {
+    width: 100%;
+    text-align: center;
+    @include desktop-size {
+      width: 50%;
+    }
+  }
+
+  .search-container {
+    .mobile-button {
+      @include desktop-size {
+        display: none;
+      }
+    }
+
+    .demo-search {
+      margin: 0 auto;
+      display: none;
+      @include desktop-size {
+        display: block;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .tickets-container {
+    margin: 16px auto;
+  }
+}

@@ -1,0 +1,35 @@
+// Use this file to store global variables for your project.
+
+$kombo-blue: #208cfb;
+$kombo-yellow: #ffd720;
+
+$background-white: #f1f3f6;
+$default-text: #132968;
+
+$white: #ffffff;
+$grey: #838383;
+
+$shadow-color: rgba(13, 39, 54, 0.2);
+
+@mixin desktop-size {
+  @media (min-width: 993px) {
+    @content;
+  }
+}
+
+@mixin button {
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $kombo-yellow;
+}
