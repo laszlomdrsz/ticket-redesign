@@ -79,8 +79,8 @@ export default function TicketResult({ ticket }: { ticket: Ticket }) {
 
           {/* TODO: fix key */}
           <div className={styles["company-logos"]}>
-            {companies.map((company) => (
-              <div key={company} className={styles["logo"]}>
+            {companies.map((company, index) => (
+              <div key={index} className={styles["logo"]}>
                 {getLogo(company)}
               </div>
             ))}
