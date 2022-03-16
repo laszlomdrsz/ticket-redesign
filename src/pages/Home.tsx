@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import styles from "./Home.module.scss";
 import { ReactComponent as DemoSearch } from "./../assets/svg/demosearch.svg";
-import TicketResult from "./../components/TicketResult/TicketResult";
-import { AllTicketsContext } from '../App';
+import TicketResult from "./../components/TicketResult/TicketResult.tsx";
+import { AllTicketsContext } from '../App.tsx';
 
 function Home() {
   const [clickedSearch, setClickedSearch] = useState<boolean>(false);

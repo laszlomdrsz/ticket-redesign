@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/Header/Header";
+import Header from "./components/Header/Header.tsx";
 import styles from "./index.module.scss";
-import Home from "./pages/Home";
-import TicketInfo from "./pages/TicketInfo";
-import { Api } from "./service/api";
-import { Ticket } from "./types";
+import Home from "./pages/Home.tsx";
+import TicketInfo from "./pages/TicketInfo.tsx";
+import { Api } from "./service/api.ts";
+import { Ticket } from "./types.ts";
 
 export const AllTicketsContext = React.createContext<Ticket[]>([]);
 
 function App() {
-  const [allTickets, setAllTickets] = useState<Ticket[]>([]);
+  const [allTickets, setAllTickets] = useState([]);
 
   useEffect(() => {
     getTickets();
