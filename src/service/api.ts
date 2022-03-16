@@ -7,7 +7,7 @@ const axios = axiosLib.create({
 });
 
 export const Api = {
-  async getTickets() {
+  async getTickets(): Promise<Ticket[]> {
     const response = await axios.get<Ticket[]>("/tickets");
     return response.data;
   },
