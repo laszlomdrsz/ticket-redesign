@@ -10,7 +10,7 @@ import { Ticket } from "./types.ts";
 export const AllTicketsContext = React.createContext<Ticket[]>([]);
 
 function App() {
-  const [allTickets, setAllTickets] = useState([]);
+  const [allTickets, setAllTickets] = useState<Ticket[]>([]);
 
   useEffect(() => {
     getTickets();
@@ -28,7 +28,7 @@ function App() {
         <div className={styles["kombo-content"]}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/ticket" element={<TicketInfo />} />
+            <Route path="/ticket/:index" element={<TicketInfo />} />
           </Routes>
         </div>
       </HashRouter>

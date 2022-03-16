@@ -10,6 +10,7 @@ import { ReactComponent as SncfLogo } from "./../../assets/svg/companies/sncf.sv
 import { ReactComponent as InouiLogo } from "./../../assets/svg/companies/inoui.svg";
 import { ReactComponent as FlixbusLogo } from "./../../assets/svg/companies/flixbus.svg";
 import { ReactComponent as AirfranceLogo } from "./../../assets/svg/companies/airfrance.svg";
+import { parseTime, parsePrice } from '../../utils/display.ts';
 
 const getIcon = (transportType: string) => {
   switch (transportType) {
@@ -39,23 +40,15 @@ const getLogo = (company: string) => {
   }
 };
 
-export default function TicketResult({ ticket }: { ticket: Ticket }) {
+export default function TicketResult({ ticket, index }: { ticket: Ticket, index: number }) {
   if (!ticket) return null;
 
   const companies = ticket.trips.map((trip) => trip.companyName);
 
-  const parseTime = (date: string) => {
-    const time = new Date(date).toLocaleTimeString("en-UK", {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-    return time;
-  };
-
   const firstTrip = ticket.trips[0];
   const lastTrip = ticket.trips[ticket.trips.length - 1];
 
-  const price =   "€" + Math.round(ticket.price);
+  const price = parsePrice(ticket.price);
   const stops = [
     {
       time: parseTime(firstTrip.departure.time),
@@ -70,7 +63,7 @@ export default function TicketResult({ ticket }: { ticket: Ticket }) {
   ];
 
   return (
-    <Link to="/ticket" className={styles["link--no-decoration"]}>
+    <Link to={"/ticket/" + index} className={styles["link--no-decoration"]}>
       <div className={styles["ticket"]}>
         <div className={styles["logo-area"]}>
           <div className={styles["logo"]}>

@@ -3,10 +3,11 @@ import styles from "./Home.module.scss";
 import { ReactComponent as DemoSearch } from "./../assets/svg/demosearch.svg";
 import TicketResult from "./../components/TicketResult/TicketResult.tsx";
 import { AllTicketsContext } from '../App.tsx';
+import { Ticket } from "../types.ts";
 
 function Home() {
   const [clickedSearch, setClickedSearch] = useState<boolean>(false);
-  const allTickets = useContext(AllTicketsContext);
+  const allTickets = useContext<Ticket[]>(AllTicketsContext);
   
   const showTickets = async () => {
     setClickedSearch(true);
@@ -21,9 +22,9 @@ function Home() {
         </button>
       </div>
       <div className={styles["tickets-container"]}>
-        {allTickets.length > 0 ? (
+        {allTickets.length > 0 && clickedSearch ? (
           allTickets.map((ticket, index) => (
-            <TicketResult key={index} ticket={ticket} />
+            <TicketResult key={index} ticket={ticket} index={index} />
           ))
         ) : (
           <p>{clickedSearch ? "Loading..." : "please click search"}</p>
