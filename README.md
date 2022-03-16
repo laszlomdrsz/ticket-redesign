@@ -1,4 +1,4 @@
-# Application test
+# Ticket redesign
 
 ## How to run
 
